@@ -1,0 +1,24 @@
+<%-include("./layouts/header") %>
+    <div class="container">
+        <div class="d-flex flex-row align-items-center justify-content-between">
+            <h1>Edit Users</h1>
+        </div>
+        <div class="row">
+        <div class="col-md-6 form-group my-3">
+            <form action="/update/<%=user._id %>" method="post" enctype="multipart/form-data" >
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" placeholder="name" value="<%=user.name%>"><br>
+                <label for="name">Email</label>
+                <input type="text" class="form-control" name="email" value="<%=user.email%>" placeholder="email"><br>
+                <label for="name">Numero de telehone</label>
+                <input type="tel" class="form-control" name="phone" value="<%=user.phone%>" placeholder="numero de telephone"><br>
+                <input type="file" class="form-control" name="image"><br>
+                <img src="/<%=user.image%>" width="100" alt=""><br>
+                <input type="hidden" value="<%=user.image%>" name="old_img">
+                 <br>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <%-include("./layouts/footer") %>

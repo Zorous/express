@@ -1,0 +1,57 @@
+<%-include("./layouts/header") %>
+  <div class="container">
+    <% if (message) { %>
+      <div class="alert alert-<%=message.type%> alert-dismissible fade show" role="alert">
+        <%=message.message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+    <div class="d-flex flex-row align-items-center justify-content-between">
+      <h1>Liste des utilisateurs</h1> <a href="/create" class="btn btn-primary">Ajouter un utilisateur</a>
+    </div>
+    <% if (Users != '') { %>
+      <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+          <tr>
+            <th>id</th>
+            <th>image</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+
+          <% Users.forEach((user , index)=> { %>
+            <tr class="align-middle">
+              <td>
+                <%=index+1%>
+              </td>
+              <td>
+                <img src="<%=user.image%>" width="50" alt="">
+              </td>
+              <td>
+                <%=user.name%>
+              </td>
+              <td>
+                <%=user.email%>
+              </td>
+              <td>
+                <%=user.phone%>
+              </td>
+              <td>
+                <a href="/edit/<%=user._id %>" class="text-success mx-2"><i class="fa-solid fa-edit "></i></a>
+                <a href="/delete/<%=user._id %>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet User ?');" class="text-danger"><i class="fa-solid fa-trash-can "></i></a>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <h1 class="text-center text-secondary mt-5">No Users now </h1>
+   <% } %>
+   
+  </div>
+  <%-include("./layouts/footer") %>
